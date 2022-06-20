@@ -58,12 +58,44 @@ ul li{
     margin-top:10px;
     display: flex;
 }
-li p{
-    padding:20px;
+li div{
+    padding:5px;
 }
 .ava{
     border-radius:50%
 }
 button{
     background:rgb(24,33,39);
+}
+@media only screen and (max-width: 900px){
+    body{
+        background:black;
+    }
+    .chat{
+        display:flex;
+        flex-direction:column;  
+    }
+    .chat__sidebar{
+        height:auto !important;
+        width: 100%;
+        position: -webkit-sticky; /* Safari */
+  position: fixed;
+  top: 0;
+    }
+    .users{
+        display: flex;
+        overflow:auto;
+    }
+    .compose{
+        position: fixed;
+    bottom: 0;
+    width: 100%;
+    }
+    .chat__main{
+        padding-bottom: 100px;
+        padding-top: 230px;
+    }
+}
+::-webkit-scrollbar {
+    display: none;
 }
