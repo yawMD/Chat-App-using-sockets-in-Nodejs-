@@ -153,10 +153,13 @@
 
             <div class="compose">
                 <form id="message-form">
-                    <input name="message" placeholder="Message" required autocomplete="off">
+                    <input id="textarea" name="message" placeholder="Message" required autocomplete="off">
                     <button>Send</button>
                 </form>
-                <button id="send-location">Send location</button>
+                <button id="send-location"><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg></button>
             </div>
         </div>
     </div>
@@ -170,9 +173,10 @@
                     <!-- <span class="message__name">{{username}}</span> -->
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
-                <p>{{message}}</p>
+                <p id="name">{{message}}</p>
             </div>
         </script>
+        
 
     <script id="location-message-template" type="text/html">
             <div class="message">
@@ -189,15 +193,24 @@
         <div class="side">
         <ul class="users">
             {{#users}}
-                <li><img class="ava" src="./male.jpeg" width="50px" height="50px" alt=""/><p>{{username}}</p></li><br />
+                <li><img class="ava" src="./male.jpeg" width="50px" height="50px" alt=""/><div>{{username}} <div class="typing"></div></div></li><br />
             {{/users}}
         </ul>
         </div>
     </script>
 
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
 </body>
