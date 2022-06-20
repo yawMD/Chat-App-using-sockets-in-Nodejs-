@@ -1,3 +1,4 @@
+
 const socket = io()
 
 // Elements
@@ -43,7 +44,8 @@ socket.on('message', (message) => {
     const html = Mustache.render(messageTemplate, {
         username: message.username,
         message: message.text,
-        createdAt: moment(message.createdAt).format('h:mm a')
+        createdAt: moment(message.createdAt).format('h:mm a'),
+        status:message.status
     })
     $messages.insertAdjacentHTML('beforeend', html)
     autoscroll()
@@ -66,6 +68,7 @@ socket.on('roomData', ({ room, users }) => {
         users
     })
     document.querySelector('#sidebar').innerHTML = html
+
 })
 
 $messageForm.addEventListener('submit', (e) => {
@@ -111,4 +114,34 @@ socket.emit('join', { username, room }, (error) => {
         alert(error)
         location.href = '/'
     }
+})
+
+const textarea = document.getElementById("textarea");
+const name = document.getElementById("name")
+const feedback = document.querySelector("typing")
+
+
+
+$(document).ready(function(){
+    $('#textarea').keypress((e)=>{
+      if(e.which!=13){
+        typing=true
+        socket.emit('typing', {user:user, typing:true})
+        clearTimeout(timeout)
+        timeout=setTimeout(typingTimeout, 3000)
+      }else{
+        clearTimeout(timeout)
+        typingTimeout()
+        //sendMessage() function will be called once the user hits enter
+        sendMessage()
+      }
+    })
+
+    //code explained later
+    socket.on('display', (data)=>{
+      if(data.typing==true)
+        $('.typing').text(`${data.username} is typing...`)
+      else
+        $('.typing').text("")
+    })
 })
