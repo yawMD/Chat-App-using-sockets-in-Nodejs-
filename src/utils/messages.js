@@ -6,15 +6,15 @@ const generateMessage = (username, text) => {
     }
 }
 
-const generateLocationMessage = (username, url) => {
+const generateLocationMessage = (username, url,isTyping) => {
     return {
         username,
         url,
-        createdAt: new Date().getTime()
+        createdAt: new Date().getTime(),
     }
 }
 
 module.exports = {
     generateMessage,
-    generateLocationMessage
+    generateLocationMessage,
 }
